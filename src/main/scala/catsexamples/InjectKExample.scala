@@ -21,15 +21,15 @@ object InjectKExample {
   case class GetAllCats() extends DataOp[List[String]]
 
   // This type is a union of DataOp[A] and Interact[A]
-  type CatsAppA[A] = EitherK[DataOp, Interact, A]
+  type CatsApp[A] = EitherK[DataOp, Interact, A]
 
   // Free
-  type CatsApp[A] = Free[CatsAppA, Unit]
+  type CatsAppFree = Free[CatsApp, Unit]
 
   // Smart constructors
   
   // Constructors  of Interacts don't need to know about DataSource or CatsApp
-  // InjectK[Interact, F] is evidence that Interact can be "cast up" to F (which will be CatsAppA)
+  // InjectK[Interact, F] is evidence that Interact can be "cast up" to F (which will be CatsApp)
   //
   // Fun fact: Inject[B, E] is evidence that B can be converted to E, where E is an Either,
   // e.g type E = Either[A, Either[B, C]]
@@ -52,7 +52,7 @@ object InjectKExample {
   }
 
   // A program using multiple ADTs
-  def program(implicit I : Interacts[CatsApp], D : DataSource[CatsApp]): Free[CatsApp, Unit] = {
+  def program(implicit I : Interacts[CatsApp], D : DataSource[CatsApp]): CatsAppFree = {
     import I._, D._
 
     for {
