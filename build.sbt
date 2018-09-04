@@ -16,8 +16,8 @@ scalacOptions ++= Seq(
 
 libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-core" % "1.2.0",
-  "org.typelevel" %% "cats-free" % "1.2.0"
-
+  "org.typelevel" %% "cats-free" % "1.2.0",
+  "com.typesafe.play" %% "play-json" % "2.6.7"
 )
 
 addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.3")
