@@ -30,6 +30,11 @@ object InjectKExample {
   
   // Constructors  of Interacts don't need to know about DataSource or CatsApp
   // InjectK[Interact, F] is evidence that Interact can be "cast up" to F (which will be CatsAppA)
+  //
+  // Fun fact: Inject[B, E] is evidence that B can be converted to E, where E is an Either,
+  // e.g type E = Either[A, Either[B, C]]
+  // (Inject[B, E] will be derived from E's type)
+  //
   class Interacts[F[_]](implicit I: InjectK[Interact, F]) {
     def tell(msg: String): Free[F, Unit] = Free.inject[Interact, F](Tell(msg))
     def ask(prompt: String): Free[F, String] = Free.inject[Interact, F](Ask(prompt))
