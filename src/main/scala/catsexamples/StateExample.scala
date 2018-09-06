@@ -6,9 +6,9 @@ object StateExample {
   // a value of type String that depends on (and can optionally modify) a state of type Int
   val a: State[Int, String] = State(s => (s + 1, "hello"))
 
-  // val (s1, r1) = f(s1)
-  // val (s2, r2) = g(s2)
-  // val (s3, r3) = h(s3)
+  // val (s2, r1) = f(s1)
+  // val (s3, r2) = g(s2)
+  // val (s4, r3) = h(s3)
   //
   //         |
   //         |
