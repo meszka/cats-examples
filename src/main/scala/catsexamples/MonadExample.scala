@@ -5,7 +5,7 @@ object MonadExample {
 
   val anotherOption: Option[Int] = anOption.map(_ + 1)
 
-  val andAnother: Option[Int] = anOption.flatMap(a => if (a % 2 == 0) Some(x + 1) else None)
+  val andAnother: Option[Int] = anOption.flatMap(a => if (a % 2 == 0) Some(a + 1) else None)
 
   val sum: Option[Int] = for {
     a <- anOption
